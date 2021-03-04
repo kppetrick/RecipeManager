@@ -25,8 +25,10 @@ public class RecipePost {
 
     private String Name;
 
+    @ElementCollection
     private Set<String> ingredients;
 
+    @ElementCollection
     private List<String> instructions;
 
     @ManyToOne
