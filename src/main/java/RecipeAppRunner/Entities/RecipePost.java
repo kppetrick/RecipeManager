@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
@@ -17,18 +18,22 @@ public class RecipePost {
 
     private String Name;
 
+    private Set<String> ingredients;
 
-    @OneToMany(mappedBy = "ingredients", cascade = ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @OrderBy
-    @JsonBackReference
-    private Set<Ingredients> ingredients;
+    private List<String> instructions;
+
+    @ManyToOne
+    private Profile author;
+
+    private Double rating;
+
+    private Integer estimatedTimeInMinutes;
+
+    private Enum category;
+
+    private String videoLink;
 
     public RecipePost() {
     }
 
-    public RecipePost(Long id, String name, Set<Ingredients> ingredients) {
-        this.id = id;
-        Name = name;
-        this.ingredients = ingredients;
-    }
 }
