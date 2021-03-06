@@ -2,9 +2,7 @@ package RecipeAppRunner.Entities;
 
 import RecipeAppRunner.Enums.Categories;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import javax.persistence.*;
@@ -18,6 +16,8 @@ import static javax.persistence.CascadeType.ALL;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class RecipePost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
