@@ -14,7 +14,7 @@ public class RecipePostServices{
         this.recipePostRepo = recipePostRepo;
     }
 
-    public void deleteRecipe(Long id) {
+    public void deleteRecipeById(Long id) {
         boolean recipeExists = recipePostRepo.existsById(id);
         if (!recipeExists){
             throw new IllegalStateException(
