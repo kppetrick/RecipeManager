@@ -15,8 +15,8 @@ public class ProfileServices {
     }
 
     public void deleteProfileById(Long id) {
-        boolean exists = profileRepo.existsById(id);
-        if (!exists){
+        boolean profileExists = profileRepo.existsById(id);
+        if (!profileExists){
             throw new IllegalStateException(
                     "Profile with id " + id + " does not exist."
             );
