@@ -25,11 +25,11 @@ public class RecipePostServices{
   public RecipePost updateRating(Long id , Double newRating)
     {
         log.info("Looking for recipe with id " + id + "in the db" );
-        RecipePost recipe= recipeRepo.findRecipePostById(id);
+        RecipePost recipe= recipePostRepo.findRecipePostById(id);
         log.info("Recipe with id found " + id + "in the db" );
         if(recipe!=null) {
                      recipe.setRating(newRating);
-                     recipeRepo.save(recipe);
+                     recipePostRepo.save(recipe);
             return recipe;
         }
         else {
