@@ -1,13 +1,17 @@
 package RecipeAppRunner.Services;
 
 
+import RecipeAppRunner.Entities.Profile;
 import RecipeAppRunner.Entities.RecipePost;
+import RecipeAppRunner.Enums.Categories;
 import lombok.extern.slf4j.Slf4j;
 import RecipeAppRunner.Repositories.RecipePostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Slf4j // for logging
@@ -20,6 +24,26 @@ public class RecipePostServices{
     @Autowired
     public RecipePostServices(RecipePostRepo recipePostRepo) {
         this.recipePostRepo = recipePostRepo;
+    }
+
+    public RecipePost createRecipePost(String name, Set<String> ingredients, List<String> instructions,
+                                       Profile author, Integer estimatedTimeInMinutes,
+                                       Categories category, String videoLink){
+
+        RecipePost newRecipePost = RecipePost.builder()
+                .name(name)
+                .ingredients(ingredients)
+                .instructions(instructions)
+                .author(author)
+                .estimatedTimeInMinutes(estimatedTimeInMinutes)
+                .category(category)
+                .videoLink(videoLink)
+                .build();
+        //Double rating not included as each recipe starts off with no ratings
+
+        log.info("new RecipePost built");
+        return recipePostRepo.save(newRecipePost);
+
     }
 
   public RecipePost updateRating(Long id , Double newRating)
