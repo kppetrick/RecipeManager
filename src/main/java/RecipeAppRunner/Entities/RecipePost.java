@@ -18,12 +18,13 @@ import static javax.persistence.CascadeType.ALL;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class RecipePost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String Name;
+    private String name;
 
     @ElementCollection
     private Set<String> ingredients;
