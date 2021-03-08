@@ -1,5 +1,6 @@
 package RecipeAppRunner.Services;
 
+import RecipeAppRunner.Entities.Profile;
 import RecipeAppRunner.Repositories.ProfileRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,10 @@ public class ProfileServices {
     @Autowired
     public ProfileServices(ProfileRepo profileRepo) {
         this.profileRepo = profileRepo;
+    }
+
+    public Profile readProfileById(long id){
+        return profileRepo.findProfileById(id);
     }
 
     public void deleteProfileById(Long id) {
