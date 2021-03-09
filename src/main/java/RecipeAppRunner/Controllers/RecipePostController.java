@@ -15,6 +15,7 @@ import java.util.Set;
 
 
 @RestController
+@RequestMapping("/api/recipeposts")
 @Slf4j // for logging
 public class RecipePostController {
     @Autowired
@@ -26,13 +27,11 @@ public class RecipePostController {
         this.recipePostServices = recipePostServices;
     }
 
-    @PostMapping()// let's decide on a common url convention - Christian
-    public ResponseEntity<RecipePost> createRecipePost(String name, Set<String> ingredients, List<String> instructions,
-                                                       Profile author, Integer estimatedTimeInMinutes,
-                                                       Categories category, String videoLink){
+    @PostMapping// let's decide on a common url convention - Christian
+    public ResponseEntity<RecipePost> createRecipePost(@RequestBody RecipePost recipe){
         log.info("createRecipePost called");
 
-        RecipePost newRecipePost = recipePostServices.createRecipePost(name, ingredients, instructions, author, estimatedTimeInMinutes, category, videoLink);
+        RecipePost newRecipePost = recipePostServices.createRecipePost(recipe);
         log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
     }
@@ -43,7 +42,7 @@ public class RecipePostController {
         return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}/{rating}")
+    @PutMapping("/{id}/{rating}")
     public ResponseEntity<?>  updateRatingController(@PathVariable  Long id , @PathVariable  Double rating) {
         log.info("In the controller , updating the Rating of " + id);
         recipePostServices.updateRating(id, rating);

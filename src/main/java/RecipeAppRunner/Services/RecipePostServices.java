@@ -26,23 +26,9 @@ public class RecipePostServices{
         this.recipePostRepo = recipePostRepo;
     }
 
-    public RecipePost createRecipePost(String name, Set<String> ingredients, List<String> instructions,
-                                       Profile author, Integer estimatedTimeInMinutes,
-                                       Categories category, String videoLink){
+    public RecipePost createRecipePost(RecipePost recipe){
 
-        RecipePost newRecipePost = RecipePost.builder()
-                .name(name)
-                .ingredients(ingredients)
-                .instructions(instructions)
-                .author(author)
-                .estimatedTimeInMinutes(estimatedTimeInMinutes)
-                .category(category)
-                .videoLink(videoLink)
-                .build();
-        //Double rating not included as each recipe starts off with no ratings
-
-        log.info("new RecipePost built");
-        return recipePostRepo.save(newRecipePost);
+        return recipePostRepo.save(recipe);
 
     }
 
