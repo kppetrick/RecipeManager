@@ -48,6 +48,7 @@ public class RecipePostController {
         log.info("readRecipePost is called");
         RecipePost recipePost = recipePostServices.readRecipePost(id);
         return new ResponseEntity<>(recipePost, HttpStatus.OK);
+        // need to review with group about proper syntax for the Recipe Post above
     }
 
     @PutMapping("/update/{id}/{rating}")
