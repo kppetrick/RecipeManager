@@ -32,7 +32,7 @@ public class RecipePostController {
         log.info("createRecipePost called");
 
         RecipePost newRecipePost = recipePostServices.createRecipePost(recipe);
-        log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), "null user")); // put this back after we have Profiles: recipe.getAuthor().getUsername()
+        log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
     }
 
