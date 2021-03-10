@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RecipePostRepo extends CrudRepository<RecipePost, Long> {
 
-  RecipePost findRecipePostById(Long aLong);
+  RecipePost findRecipePostById(Long id);
 }

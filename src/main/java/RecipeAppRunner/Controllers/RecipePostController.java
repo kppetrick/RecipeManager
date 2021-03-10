@@ -42,6 +42,7 @@ public class RecipePostController {
         return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
 
+
     @PutMapping("/{id}/{rating}")
     public ResponseEntity<?>  updateRatingController(@PathVariable  Long id , @PathVariable  Double rating) {
         log.info("In the controller , updating the Rating of " + id);
