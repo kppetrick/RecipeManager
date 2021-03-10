@@ -43,6 +43,13 @@ public class RecipePostController {
         return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
 
+    @GetMapping("/recipePost") //will update when discussed with group
+    public ResponseEntity<?> readRecipePost(@PathVariable Long id){
+        log.info("readRecipePost is called");
+        RecipePost recipePost = recipePostServices.readRecipePost(id);
+        return new ResponseEntity<>(recipePost, HttpStatus.OK);
+    }
+
     @PutMapping("/update/{id}/{rating}")
     public ResponseEntity<?>  updateRatingController(@PathVariable  Long id , @PathVariable  Double rating) {
         log.info("In the controller , updating the Rating of " + id);

@@ -46,6 +46,18 @@ public class RecipePostServices{
 
     }
 
+    public RecipePost readRecipePost(Long id){
+        log.info("The recipe is being read");
+        RecipePost recipePost = recipePostRepo.findRecipePostById(id);
+        if (recipePost != null){
+            log.info("The recipe post exists and is being read");
+            return recipePost;
+        } else {
+            log.warn("The recipe post could not be found, returning null");
+            return null;
+        }
+    }
+
   public RecipePost updateRating(Long id , Double newRating)
     {
         log.info("Looking for recipe with id " + id + "in the db" );
