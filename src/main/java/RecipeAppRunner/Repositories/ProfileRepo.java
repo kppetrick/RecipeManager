@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProfileRepo extends CrudRepository<Profile, Long> {
 
     Profile findProfileById(long id);
+    Profile save(Profile profile);
 }
