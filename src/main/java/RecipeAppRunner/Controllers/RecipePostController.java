@@ -15,7 +15,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/api/recipeposts")
+@RequestMapping("api/recipeposts")
 @Slf4j // for logging
 public class RecipePostController {
     @Autowired
@@ -26,6 +26,10 @@ public class RecipePostController {
     public RecipePostController(RecipePostServices recipePostServices) {
         this.recipePostServices = recipePostServices;
     }
+    @GetMapping
+    public ResponseEntity<?> HelloWorld() {
+        return new ResponseEntity<>("Hello World" , HttpStatus.OK);
+    }
 
     @PostMapping// let's decide on a common url convention - Christian
     public ResponseEntity<RecipePost> createRecipePost(@RequestBody RecipePost recipe){
@@ -34,12 +38,6 @@ public class RecipePostController {
         RecipePost newRecipePost = recipePostServices.createRecipePost(recipe);
         log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
-    }
-
-    @GetMapping
-    public ResponseEntity<?> HelloWorld()
-    {
-        return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
 
     @GetMapping("/recipePost") //will update when discussed with group
