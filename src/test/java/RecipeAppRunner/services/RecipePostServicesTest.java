@@ -72,7 +72,6 @@ public class RecipePostServicesTest {
     @Test
     public void updateRecipeRating() {
 
-        String expectedName= "VEGGIEE ENCHILLIDAS";
         RecipePost expectedRecipe = recipe;
         //Stubbing Methods - Usually, we want to configure the mock and define what to do when specific methods of the mock are called.
         //This is called stubbing.
