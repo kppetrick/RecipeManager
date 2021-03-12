@@ -15,7 +15,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/api/recipeposts")
+@RequestMapping("api/recipeposts")
 @Slf4j // for logging
 public class RecipePostController {
     @Autowired
