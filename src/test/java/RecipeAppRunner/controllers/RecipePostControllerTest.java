@@ -65,8 +65,8 @@ public class RecipePostControllerTest {
         Mockito.when(recipePostServices.updateRating(any(),any())).thenReturn(updatedRecipe);
 
         mockMvc.perform(put("/api/recipeposts/{id}/{rating}", 1L , 5.5)
-                .content(jsonRequest)
-                .contentType(MediaType.APPLICATION_JSON)
+               // .content(jsonRequest)
+               // .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
