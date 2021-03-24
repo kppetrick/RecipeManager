@@ -36,7 +36,7 @@ public class RecipePostController {
         log.info("createRecipePost called");
 
         RecipePost newRecipePost = recipePostServices.createRecipePost(recipe);
-        log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
+        //log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
     }
 
