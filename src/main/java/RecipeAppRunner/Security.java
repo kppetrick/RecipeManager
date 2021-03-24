@@ -12,13 +12,13 @@ public class Security extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/")
+                .antMatchers("/storage/**","/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST,"/storage/uploadFile").permitAll()
+                .antMatchers(HttpMethod.POST,"/storage/uploadFile","/**").permitAll()
                 .anyRequest()
                 .authenticated()
-                .and()
-                .oauth2Login()
+//                .and()
+//                .oauth2Login()
                 .and()
                 .logout().logoutSuccessUrl("/");;
     }
@@ -26,6 +26,6 @@ public class Security extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/storage/uploadFile/**");
+                .antMatchers("/storage/uploadFile/**","/**");
     }
 }
