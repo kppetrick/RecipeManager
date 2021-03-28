@@ -1,8 +1,6 @@
 package RecipeAppRunner.Controllers;
 
-import RecipeAppRunner.Entities.Profile;
 import RecipeAppRunner.Entities.RecipePost;
-import RecipeAppRunner.Enums.Categories;
 import RecipeAppRunner.Services.RecipePostServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -21,8 +18,6 @@ public class RecipePostController {
     @Autowired
     RecipePostServices recipePostServices;
 
-    //private final RecipePostServices recipePostServices;
-
     public RecipePostController(RecipePostServices recipePostServices) {
         this.recipePostServices = recipePostServices;
     }
@@ -31,7 +26,7 @@ public class RecipePostController {
         return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
 
-    @PostMapping// let's decide on a common url convention - Christian
+    @PostMapping
     public ResponseEntity<RecipePost> createRecipePost(@RequestBody RecipePost recipe){
         log.info("createRecipePost called");
 
@@ -40,7 +35,8 @@ public class RecipePostController {
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
     }
 
-    @GetMapping("/recipePost") //will update when discussed with group
+    @GetMapping("/recipePost/{id}") //will update when discussed with group
+    // Gunjan - added the {id} as to pass the pathvariable to the method needed in URL
     public ResponseEntity<?> readRecipePost(@PathVariable Long id){
         log.info("readRecipePost is called");
         RecipePost recipePost = recipePostServices.readRecipePost(id);
@@ -55,8 +51,6 @@ public class RecipePostController {
         return new ResponseEntity<>(recipes, HttpStatus.OK);
 
     }
-
-
 
     @PutMapping("/{id}/{rating}")
     public ResponseEntity<?>  updateRatingController(@PathVariable  Long id , @PathVariable  Double rating) {

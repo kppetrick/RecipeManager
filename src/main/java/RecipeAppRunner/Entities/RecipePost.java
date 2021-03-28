@@ -1,10 +1,7 @@
 package RecipeAppRunner.Entities;
 
 import RecipeAppRunner.Enums.Categories;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-
-
 import javax.persistence.*;
 
 import java.util.List;
