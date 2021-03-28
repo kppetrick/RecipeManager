@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
-
+//https://medium.com/oril/uploading-files-to-aws-s3-bucket-using-spring-boot-483fcb6f8646
 
 @Service
 public class AmazonClient {
@@ -70,7 +70,9 @@ public class AmazonClient {
     }
     public String deleteFileFromS3Bucket(String fileUrl) {
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-        s3client.deleteObject(new DeleteObjectRequest(bucketName + "/", fileName));
-        return "Successfully deleted";
+        //System.out.println(fileName);
+        //Removed the  extra slash from below as delete was not working
+        s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
+        return "Successfully deleted"; //no return , hence always returns this.
     }
 }
