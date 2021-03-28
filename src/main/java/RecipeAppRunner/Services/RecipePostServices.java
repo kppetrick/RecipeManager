@@ -2,11 +2,15 @@ package RecipeAppRunner.Services;
 
 
 
+import RecipeAppRunner.Entities.Rating;
 import RecipeAppRunner.Entities.RecipePost;
 import lombok.extern.slf4j.Slf4j;
 import RecipeAppRunner.Repositories.RecipePostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
+import java.util.ArrayList;
 
 import java.util.List;
 
@@ -18,6 +22,9 @@ public class RecipePostServices{
   //  @Autowired
   //  private RecipePostRepo recipeRepo ;
    private final RecipePostRepo recipePostRepo;
+
+    @Autowired
+    RatingService ratingService;
 
     @Autowired
     public RecipePostServices(RecipePostRepo recipePostRepo) {
@@ -80,6 +87,16 @@ public class RecipePostServices{
             );
         }
         recipePostRepo.deleteById(id);
+    }
+
+    public Double calculateRating(Long id){
+        RecipePost recipe = recipePostRepo.findRecipePostById(id);
+        List<Rating> postRatings = ratingService.getAllRatingsForRecipePost(recipe);
+        Integer numberOfRatings = postRatings.size();
+        Double sumOfRatings = postRatings.stream().mapToDouble(x -> x.getValue()).sum();
+
+        Double newRating = sumOfRatings / numberOfRatings;
+        return newRating;
     }
 
 }

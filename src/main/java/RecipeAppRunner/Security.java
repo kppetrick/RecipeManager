@@ -14,7 +14,6 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/storage/**","/**")
                 .permitAll()
-                .antMatchers(HttpMethod.POST,"/storage/uploadFile","/**").permitAll()
                 .anyRequest()
                 .authenticated()
 //                .and()
