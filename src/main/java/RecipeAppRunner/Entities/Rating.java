@@ -20,6 +20,7 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
     private Integer value;
+
     @NotNull
     @ManyToOne(fetch = LAZY)
     private RecipePost recipePost;
