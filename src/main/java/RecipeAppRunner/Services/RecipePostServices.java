@@ -9,7 +9,9 @@ import RecipeAppRunner.Repositories.RecipePostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -47,6 +49,18 @@ public class RecipePostServices{
         }
     }
 
+
+    public List<RecipePost> readAllRecipe(){
+        log.info("The recipe is being read");
+        List<RecipePost> recipes = recipePostRepo.findAll();
+        if (recipes.size() !=0){
+            log.info("The recipe post exists and is being read");
+            return recipes;
+        } else {
+            log.warn("The recipes list is empty , returning null");
+            return null;
+        }
+    }
   public RecipePost updateRating(Long id , Double newRating)
     {
         log.info("Looking for recipe with id " + id + "in the db" );

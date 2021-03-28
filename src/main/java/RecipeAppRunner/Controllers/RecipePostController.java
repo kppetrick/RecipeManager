@@ -26,7 +26,7 @@ public class RecipePostController {
     public RecipePostController(RecipePostServices recipePostServices) {
         this.recipePostServices = recipePostServices;
     }
-    @GetMapping
+    @GetMapping("/hello")
     public ResponseEntity<?> HelloWorld() {
         return new ResponseEntity<>("Hello World" , HttpStatus.OK);
     }
@@ -36,7 +36,7 @@ public class RecipePostController {
         log.info("createRecipePost called");
 
         RecipePost newRecipePost = recipePostServices.createRecipePost(recipe);
-        log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
+        //log.info(String.format("new RecipePost %s by %s successfully created and saved", newRecipePost.getName(), newRecipePost.getAuthor().getUsername()));
         return new ResponseEntity<>(newRecipePost, HttpStatus.CREATED);
     }
 
@@ -47,6 +47,15 @@ public class RecipePostController {
         return new ResponseEntity<>(recipePost, HttpStatus.OK);
         // need to review with group about proper syntax for the Recipe Post above
     }
+
+    @GetMapping
+    public ResponseEntity<?> readAllRecipes(){
+        log.info("All the Recipes being pulled from DB");
+        List<RecipePost> recipes = recipePostServices.readAllRecipe();
+        return new ResponseEntity<>(recipes, HttpStatus.OK);
+
+    }
+
 
 
     @PutMapping("/{id}/{rating}")
